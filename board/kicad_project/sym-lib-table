@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "RP2040")(type "KiCad")(uri "${KIPRJMOD}/project_libraries/RP2040/RP2040.kicad_sym")(options "")(descr ""))
+  (lib (name "ME6211C33M5G-N")(type "KiCad")(uri "${KIPRJMOD}/project_libraries/ME6211C33M5G-N/ME6211C33M5G-N.kicad_sym")(options "")(descr ""))
+)
