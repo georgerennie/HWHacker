@@ -1,5 +1,4 @@
 (fp_lib_table
   (lib (name "RP2040")(type "KiCad")(uri "${KIPRJMOD}/project_libraries/RP2040")(options "")(descr ""))
   (lib (name "ME6211C33M5G-N")(type "KiCad")(uri "${KIPRJMOD}/project_libraries/ME6211C33M5G-N")(options "")(descr ""))
-  (lib (name "YSX321SL")(type "KiCad")(uri "${KIPRJMOD}/project_libraries/YSX321SL")(options "")(descr ""))
 )
