@@ -1,0 +1,3 @@
+[submodule "fw_attacker/libs/pico_bootsel_reset"]
+	path = fw_attacker/libs/pico_bootsel_reset
+	url = git@github.com:georgerennie/pico_bootsel_reset.git
