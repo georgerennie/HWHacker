@@ -392,6 +392,9 @@
     (property "Datasheet" "~" (id 3) (at 76.2 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "JLCPCB BOM" "0" (id 4) (at 76.2 140.97 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
   )
 
   (symbol (lib_id "Mechanical:MountingHole") (at 76.2 146.05 0) (unit 1)
@@ -407,6 +410,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 76.2 146.05 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "JLCPCB BOM" "0" (id 4) (at 76.2 146.05 0)
       (effects (font (size 1.27 1.27)) hide)
     )
   )
@@ -426,6 +432,9 @@
     (property "Datasheet" "~" (id 3) (at 96.52 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "JLCPCB BOM" "0" (id 4) (at 96.52 140.97 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
   )
 
   (symbol (lib_id "Mechanical:MountingHole") (at 96.52 146.05 0) (unit 1)
@@ -443,6 +452,9 @@
     (property "Datasheet" "~" (id 3) (at 96.52 146.05 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "JLCPCB BOM" "0" (id 4) (at 96.52 146.05 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
   )
 
   (symbol (lib_id "Connector:USB_B_Mini") (at 74.93 96.52 0) (unit 1)
@@ -454,6 +466,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 78.74 97.79 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC Part" "C91144" (id 4) (at 74.93 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 370336a9-d0de-4f16-8eb0-60ffb5ead60a))
@@ -936,46 +951,46 @@
       (reference "U2") (unit 1) (value "W25Q128JVS") (footprint "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/2db628b0-e7bb-450c-9c65-0d45224ff133"
-      (reference "U3") (unit 1) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 1) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/96eb3513-717c-41c5-9196-5a94e883104f"
-      (reference "U3") (unit 2) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 2) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/cb7ffc99-1491-45b4-86f1-b7fcec40453b"
-      (reference "U3") (unit 3) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 3) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/bfb51e94-fa1d-4f0b-992e-cd4e479e164b"
-      (reference "U3") (unit 4) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 4) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/dbcdf518-8fca-415f-bf8e-83192f707c66"
-      (reference "U3") (unit 5) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 5) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/fd906319-ee91-4183-bf3b-c2807538b01d"
-      (reference "U3") (unit 6) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 6) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/1a4c3567-03ce-4b04-9fd8-aa199f708df4"
-      (reference "U3") (unit 7) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U3") (unit 7) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/d045d5ac-e66e-43c6-99bc-e73dc71cf592"
-      (reference "U4") (unit 1) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 1) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/b6d17819-4f2f-4ace-8c62-67249c10750c"
-      (reference "U4") (unit 2) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 2) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/db4c696a-1a05-4623-b322-0f037a6a8343"
-      (reference "U4") (unit 3) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 3) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/c18ea85f-f4fd-497e-be5b-9d4bd152ecd9"
-      (reference "U4") (unit 4) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 4) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/e16c43d8-7efc-45b6-bb28-a41fb5b79956"
-      (reference "U4") (unit 5) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 5) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/95451c9a-004f-4f13-833e-e47bcdc0ec59"
-      (reference "U4") (unit 6) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 6) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/2186ec41-f869-4866-a678-a976b5a314bb"
-      (reference "U4") (unit 7) (value "74LS07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
+      (reference "U4") (unit 7) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/efb7ff8c-488d-4bb3-8b7b-611da3a4a7c3/b01e00f8-056e-4314-8213-e4316652542f"
       (reference "Y1") (unit 1) (value "X322512MSB4SI 12MHz") (footprint "Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm")
