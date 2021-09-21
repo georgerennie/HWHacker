@@ -90,7 +90,9 @@ SPIProg::Cmd::T SPIProg::transfer_cmd(const SPIProg::Cmd::T& cmd) {
 	for (;;) {
 		spi_write_read_blocking(spi_intf, cmd.data(), result.data(), 4);
 		// TODO: should this timeout?
-		if (result[2] == cmd[1]) { return result; }
+		if (result[2] == cmd[1]) {
+			return result;
+		}
 		restart_programming();
 	}
 }

@@ -1,6 +1,7 @@
 #include <hardware/gpio.h>
 #include <pico/stdlib.h>
-#include "target_interfaces/spi_prog/spi_prog.h"
+#include "target_interfaces/clk_controller.h"
+#include "target_interfaces/spi_prog.h"
 
 // Blinky on PB7
 const uint8_t program[] = {
@@ -19,9 +20,16 @@ const uint8_t program[] = {
     0xF8, 0x94, 0xFF, 0xCF};
 
 int main() {
-	TargetInterfaces::SPIProg spi_prog;
-	spi_prog.start_programming();
-	spi_prog.write_flash_program(program, sizeof(program));
-	spi_prog.finish_programming();
+	// TargetInterfaces::SPIProg spi_prog;
+	// spi_prog.start_programming();
+	// spi_prog.write_flash_program(program, sizeof(program));
+	// spi_prog.finish_programming();
+
+	std::array<uint32_t, 1 << 16> glitch_seq;
+    glitch_seq.fill(0xFFFF0000);
+
+	TargetInterfaces::ClkController clk_control;
+	clk_control.start(glitch_seq.data(), glitch_seq.size());
+
 	for (;;) {}
 }
