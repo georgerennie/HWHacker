@@ -993,7 +993,7 @@
       (reference "U1") (unit 1) (value "ATtiny84A-SS") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
     )
     (path "/efb7ff8c-488d-4bb3-8b7b-611da3a4a7c3/cf025d42-9f38-41b2-83f0-9da276d2e49e/7733bde8-cce1-49d0-8d0b-87ec0d992c2a"
-      (reference "U2") (unit 1) (value "W25Q128JVS") (footprint "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm")
+      (reference "U2") (unit 1) (value "HG25Q16") (footprint "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm")
     )
     (path "/45d60b73-33f6-4405-8e1d-963e86219943/2db628b0-e7bb-450c-9c65-0d45224ff133"
       (reference "U3") (unit 1) (value "74HC07") (footprint "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm")
