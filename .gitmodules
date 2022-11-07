@@ -1,6 +1,6 @@
-[submodule "fw_attacker/libs/pico_bootsel_reset"]
-	path = fw_attacker/libs/pico_bootsel_reset
+[submodule "fw/libs/pico_bootsel_reset"]
+	path = fw/libs/pico_bootsel_reset
 	url = git@github.com:georgerennie/pico_bootsel_reset.git
-[submodule "fw_attacker/libs/PIO_Builder"]
-	path = fw_attacker/libs/PIO_Builder
+[submodule "fw/libs/PIO_Builder"]
+	path = fw/libs/PIO_Builder
 	url = git@github.com:georgerennie/PIO_Builder.git
