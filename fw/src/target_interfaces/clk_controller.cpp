@@ -2,6 +2,7 @@
 #include <hardware/irq.h>
 #include <pico/stdlib.h>
 #include <algorithm>
+#include <pio_builder.hpp>
 
 // TODO: A lot of this could do with refactoring for safety/clarity
 
@@ -10,44 +11,30 @@ namespace TargetInterfaces {
 ClkController* ClkController::self_instance = nullptr;
 const PIO      ClkController::pio_inst      = pio0;
 
-auto ClkController::glitch_program(
-    const uint8_t half_period, const uint8_t on_period, const uint8_t off_period
-) {
-	using namespace PIOBuilder;
-	Program<4, 1> p;
+struct ClockProgram : public PIOBuilder::Program<1> {
+	// Non glitching constructor
+	constexpr ClockProgram(const uint8_t half_period) {
+		wrap_target();
+		nop().side(1)[half_period - 1];
+		nop().side(0)[half_period - 1];
+		wrap();
+	}
 
-	// glitch:
-	//     OUT X, 1      side 0 [off_period - 1]
-	//     JMP !X glitch side 1 [on_period - 1]
-	//     NOP           side 1 [half_period - 1 - on_period]
-	//     NOP           side 0 [half_period - 1 - off_period]
-
-	p.wrap_target();
-	const auto glitch_lbl = p.out(OutDest::X, 1, Delay(off_period - 1), SideSet(0));
-	p.jmp(JmpCond::X_Zero, glitch_lbl, Delay(on_period - 1), SideSet(1));
-
-	p.nop(Delay(half_period - 1 - on_period), SideSet(1));
-	p.nop(Delay(half_period - 1 - off_period), SideSet(0));
-
-	p.wrap();
-
-	return p;
-}
-
-auto ClkController::no_glitch_program(const uint8_t half_period) {
-	using namespace PIOBuilder;
-	Program<2, 1> p;
-
-	//     NOP           side 1 [half_period - 1]
-	//     NOP           side 0 [half_period - 1]
-
-	p.wrap_target();
-	p.nop(Delay(half_period - 1), SideSet(1));
-	p.nop(Delay(half_period - 1), SideSet(0));
-	p.wrap();
-
-	return p;
-}
+	// Glitching constructor
+	constexpr ClockProgram(
+	    const uint8_t half_period, const uint8_t on_period, const uint8_t off_period
+	) {
+		wrap_target();
+		// clang-format off
+		const auto glitch = label();
+			out_x(1)          .side(0) [off_period - 1];
+			jmp_not_x(glitch) .side(1) [on_period - 1];
+			nop()             .side(1) [half_period - 1 - on_period];
+			nop()             .side(0) [half_period - 1 - off_period];
+		// clang-format on
+		wrap();
+	}
+};
 
 ClkController::ClkController() {
 	if (self_instance) {
@@ -80,9 +67,9 @@ void ClkController::run_normal() {
 	}
 	running = true;
 
-	const auto program = no_glitch_program(16);
-	pio_prog_offset    = pio_add_program(pio_inst, program);
-	pio_prog_len       = program.size();
+	ClockProgram program(16);
+	pio_prog_offset = pio_add_program(pio_inst, program);
+	pio_prog_len    = program.size();
 
 	auto config = program.get_default_config(pio_prog_offset);
 	sm_config_set_sideset_pins(&config, clk_pin);
@@ -98,9 +85,9 @@ void ClkController::run_glitches(std::span<ClkController::GlitchRegion> regions)
 	running = true;
 
 	// Setup SM program
-	const auto program = glitch_program(16, 4, 5);
-	pio_prog_offset    = pio_add_program(pio_inst, program);
-	pio_prog_len       = program.size();
+	ClockProgram program(16, 4, 5);
+	pio_prog_offset = pio_add_program(pio_inst, program);
+	pio_prog_len    = program.size();
 
 	auto config = program.get_default_config(pio_prog_offset);
 	sm_config_set_sideset_pins(&config, clk_pin);

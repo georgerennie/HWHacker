@@ -3,7 +3,6 @@
 #include <hardware/dma.h>
 #include <hardware/pio.h>
 #include <array>
-#include <pio_builder.hpp>
 #include <span>
 #include <utility>
 #include "pins.h"
