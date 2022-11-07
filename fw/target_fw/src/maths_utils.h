@@ -17,7 +17,7 @@ constexpr DivModResult<uint32_t, uint32_t> iterative_division(uint32_t a, const 
 		const auto last_a = a;
 		a -= n;
 
-		const auto top_a = static_cast<uint8_t>(a >> 24);
+		const auto top_a      = static_cast<uint8_t>(a >> 24);
 		const auto top_last_a = static_cast<uint8_t>(last_a >> 24);
 		if (top_a > top_last_a)
 			return {quot, last_a};

@@ -22,7 +22,8 @@
 namespace StringObfuscator {
 
 constexpr void encode_string(
-    const uint32_t seed, const char plain[], char cipher[], const size_t len) {
+    const uint32_t seed, const char plain[], char cipher[], const size_t len
+) {
 	// XorShift32
 	uint32_t state = seed;
 	for (size_t i = 0; i < len; i++) {
@@ -39,7 +40,7 @@ public:
 	constexpr String(const char (&plain_text)[N]) : string_data{} {
 		encode_string(SEED, plain_text, string_data, N);
 	}
-	constexpr size_t size() const { return N; }
+	constexpr size_t      size() const { return N; }
 	constexpr const char* data() const { return string_data; }
 
 	void deobfuscate() { encode_string(SEED, string_data, string_data, N); }

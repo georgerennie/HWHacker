@@ -23,9 +23,9 @@ public:
 	void finish_programming();
 
 	struct Cmd {
-		using T = std::array<uint8_t, 4>;
-		static constexpr T ProgEn = {0xAC, 0x53, 0x00, 0x00};
-		static constexpr T ChipErase = {0xAC, 0x80, 0x00, 0x00};
+		using T                          = std::array<uint8_t, 4>;
+		static constexpr T ProgEn        = {0xAC, 0x53, 0x00, 0x00};
+		static constexpr T ChipErase     = {0xAC, 0x80, 0x00, 0x00};
 		static constexpr T PollReadyBusy = {0xF0, 0x00, 0x00, 0x00};
 
 		static constexpr T LoadPGMPageHigh(const uint16_t word, const uint8_t data) {
@@ -59,7 +59,7 @@ public:
 
 	uint8_t execute_cmd(const Cmd::T &cmd);
 
-	void program_flash(std::span<const uint8_t> data);
+	void    program_flash(std::span<const uint8_t> data);
 	uint8_t read_flash_byte(const uint16_t addr);
 
 	void write_flash_page(const uint16_t page_addr, std::span<const uint8_t> data);
@@ -73,12 +73,12 @@ private:
 	// TODO: This is different for attiny parts
 	// Page size in (16 bit) words
 	static constexpr uint16_t flash_page_words = 64;
-	static constexpr auto flash_page_bytes = 2 * flash_page_words;
+	static constexpr auto     flash_page_bytes = 2 * flash_page_words;
 
-	static constexpr auto sclk_pin = Pins::spi_sclk;
-	static constexpr auto rx_pin = Pins::spi_rx;
-	static constexpr auto tx_pin = Pins::spi_tx;
-	static constexpr auto rst_n_pin = Pins::rst_n;
+	static constexpr auto sclk_pin   = Pins::spi_sclk;
+	static constexpr auto rx_pin     = Pins::spi_rx;
+	static constexpr auto tx_pin     = Pins::spi_tx;
+	static constexpr auto rst_n_pin  = Pins::rst_n;
 	static constexpr auto pwr_en_pin = Pins::pwr_en;
 };
 

@@ -32,11 +32,12 @@ public:
 
 private:
 	auto glitch_program(
-	    const uint8_t half_period, const uint8_t on_period, const uint8_t off_period);
+	    const uint8_t half_period, const uint8_t on_period, const uint8_t off_period
+	);
 
 	auto no_glitch_program(const uint8_t half_period);
 
-	void prepare_next_dma_buf();
+	void        prepare_next_dma_buf();
 	static void dma_handler();
 
 	static ClkController* self_instance;
@@ -50,20 +51,20 @@ private:
 	// transaction
 	struct DmaChanData {
 		std::array<uint32_t, dma_buf_size> buf;
-		uint16_t num;
-		dma_channel_config config;
+		uint16_t                           num;
+		dma_channel_config                 config;
 	};
 	std::array<DmaChanData, num_dma_chans> dma_chans;
-	size_t dma_chan_idx = 0;
+	size_t                                 dma_chan_idx = 0;
 
 	std::span<GlitchRegion>::iterator current_region, end_region;
 	// Current number of bits through region
 	size_t glitch_idx = 0;
 
-	bool running = false;
+	bool             running = false;
 	static const PIO pio_inst;
-	uint16_t pio_sm;
-	uint8_t pio_prog_offset, pio_prog_len;
+	uint16_t         pio_sm;
+	uint8_t          pio_prog_offset, pio_prog_len;
 
 	static constexpr auto clk_pin = Pins::clk;
 };

@@ -21,8 +21,8 @@ private:
 
 	static constexpr auto sclk_pin = Pins::spi_sclk;
 	static constexpr auto cs_n_pin = Pins::spi_cs_n;
-	static constexpr auto rx_pin = Pins::spi_rx;
-	static constexpr auto tx_pin = Pins::spi_tx;
+	static constexpr auto rx_pin   = Pins::spi_rx;
+	static constexpr auto tx_pin   = Pins::spi_tx;
 };
 
 } // namespace TargetInterfaces

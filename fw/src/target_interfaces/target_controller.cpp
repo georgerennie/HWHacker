@@ -59,8 +59,8 @@ TargetController::AVRFuses TargetController::read_fuses() {
 	prog.start_programming();
 
 	AVRFuses fuses;
-	fuses.low = prog.execute_cmd(SPIProg::Cmd::ReadLFuse);
-	fuses.high = prog.execute_cmd(SPIProg::Cmd::ReadHFuse);
+	fuses.low      = prog.execute_cmd(SPIProg::Cmd::ReadLFuse);
+	fuses.high     = prog.execute_cmd(SPIProg::Cmd::ReadHFuse);
 	fuses.extended = prog.execute_cmd(SPIProg::Cmd::ReadEFuse);
 
 	prog.finish_programming();

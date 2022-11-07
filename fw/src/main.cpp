@@ -26,7 +26,7 @@ int main() {
 	// TargetController, not here...)
 	TargetInterfaces::Serial s;
 	target.run();
-	
+
 	// std::pair<uint32_t, bool> glitches[] = {
 	//     {10022005, false},
 	//     {10, true},

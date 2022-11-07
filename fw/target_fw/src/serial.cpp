@@ -10,11 +10,15 @@ void Serial::endl() { putchar('\n'); }
 void Serial::space() { putchar(' '); }
 
 void Serial::write(const char* s) {
-	for (size_t i = 0; s[i] != '\0'; i++) { putchar(s[i]); }
+	for (size_t i = 0; s[i] != '\0'; i++) {
+		putchar(s[i]);
+	}
 }
 
 void Serial::write(const char* s, const size_t len) {
-	for (size_t i = 0; i < len; i++) { putchar(s[i]); }
+	for (size_t i = 0; i < len; i++) {
+		putchar(s[i]);
+	}
 }
 
 void Serial::write(uint32_t val) {
@@ -38,14 +42,14 @@ void Serial::write(uint32_t val) {
 	// write(&buf[i], digits - i);
 
 	// 10 digits total, but the smallest digit is special cased
-	constexpr auto digits = 9;
-	uint32_t divider = 1000000000;
-	bool visible = false;
+	constexpr auto digits  = 9;
+	uint32_t       divider = 1000000000;
+	bool           visible = false;
 
 	for (uint8_t i = 0; i < digits; i++) {
 		const auto divmod = Maths::iterative_division(val, divider);
-		divider = Maths::approx_div_10(divider);
-		val = divmod.rem;
+		divider           = Maths::approx_div_10(divider);
+		val               = divmod.rem;
 
 		const auto quot = static_cast<char>(divmod.quot);
 		if (quot != 0 || visible) {

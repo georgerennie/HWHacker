@@ -9,7 +9,9 @@ int main() {
 		volatile uint32_t cnt = 0;
 		for (uint8_t i = 0; i < 4; i++) {
 			for (uint8_t j = 0; j < 250; j++) {
-				for (uint8_t k = 0; k < 250; k++) { cnt++; }
+				for (uint8_t k = 0; k < 250; k++) {
+					cnt++;
+				}
 			}
 		}
 

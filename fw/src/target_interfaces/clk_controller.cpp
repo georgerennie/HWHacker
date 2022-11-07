@@ -8,10 +8,11 @@
 namespace TargetInterfaces {
 
 ClkController* ClkController::self_instance = nullptr;
-const PIO ClkController::pio_inst = pio0;
+const PIO      ClkController::pio_inst      = pio0;
 
 auto ClkController::glitch_program(
-    const uint8_t half_period, const uint8_t on_period, const uint8_t off_period) {
+    const uint8_t half_period, const uint8_t on_period, const uint8_t off_period
+) {
 	using namespace PIOBuilder;
 	Program<4, 1> p;
 
@@ -58,14 +59,18 @@ ClkController::ClkController() {
 	pio_sm = pio_claim_unused_sm(pio_inst, true);
 	pio_sm_set_consecutive_pindirs(pio_inst, pio_sm, clk_pin, 1, true);
 
-	for (auto& chan : dma_chans) { chan.num = dma_claim_unused_channel(true); }
+	for (auto& chan : dma_chans) {
+		chan.num = dma_claim_unused_channel(true);
+	}
 }
 
 ClkController::~ClkController() {
 	stop();
 
 	pio_sm_unclaim(pio_inst, pio_sm);
-	for (const auto chan : dma_chans) { dma_channel_unclaim(chan.num); }
+	for (const auto chan : dma_chans) {
+		dma_channel_unclaim(chan.num);
+	}
 	self_instance = nullptr;
 }
 
@@ -76,8 +81,8 @@ void ClkController::run_normal() {
 	running = true;
 
 	const auto program = no_glitch_program(16);
-	pio_prog_offset = pio_add_program(pio_inst, program);
-	pio_prog_len = program.size();
+	pio_prog_offset    = pio_add_program(pio_inst, program);
+	pio_prog_len       = program.size();
 
 	auto config = program.get_default_config(pio_prog_offset);
 	sm_config_set_sideset_pins(&config, clk_pin);
@@ -94,8 +99,8 @@ void ClkController::run_glitches(std::span<ClkController::GlitchRegion> regions)
 
 	// Setup SM program
 	const auto program = glitch_program(16, 4, 5);
-	pio_prog_offset = pio_add_program(pio_inst, program);
-	pio_prog_len = program.size();
+	pio_prog_offset    = pio_add_program(pio_inst, program);
+	pio_prog_len       = program.size();
 
 	auto config = program.get_default_config(pio_prog_offset);
 	sm_config_set_sideset_pins(&config, clk_pin);
@@ -105,7 +110,7 @@ void ClkController::run_glitches(std::span<ClkController::GlitchRegion> regions)
 	pio_sm_init(pio_inst, pio_sm, pio_prog_offset, &config);
 
 	for (size_t i = 0; i < dma_chans.size(); i++) {
-		auto& chan = dma_chans[i];
+		auto& chan  = dma_chans[i];
 		chan.config = dma_channel_get_default_config(chan.num);
 		channel_config_set_read_increment(&chan.config, true);
 		channel_config_set_write_increment(&chan.config, false);
@@ -121,11 +126,13 @@ void ClkController::run_glitches(std::span<ClkController::GlitchRegion> regions)
 	irq_set_enabled(DMA_IRQ_0, true);
 
 	current_region = regions.begin();
-	end_region = regions.end();
-	glitch_idx = 0;
+	end_region     = regions.end();
+	glitch_idx     = 0;
 
 	// Configure buffers ready ahead of transfer
-	for (const auto& chan : dma_chans) { prepare_next_dma_buf(); }
+	for (const auto& chan : dma_chans) {
+		prepare_next_dma_buf();
+	}
 
 	pio_sm_clear_fifos(pio_inst, pio_sm);
 	dma_channel_start(dma_chans[dma_chan_idx].num);
@@ -148,9 +155,10 @@ void ClkController::stop() {
 
 void ClkController::prepare_next_dma_buf() {
 	auto& chan = dma_chans[dma_chan_idx];
-	auto& buf = chan.buf;
+	auto& buf  = chan.buf;
 	dma_channel_configure(
-	    chan.num, &chan.config, &pio_inst->txf[pio_sm], buf.data(), buf.size(), false);
+	    chan.num, &chan.config, &pio_inst->txf[pio_sm], buf.data(), buf.size(), false
+	);
 
 	dma_chan_idx = (dma_chan_idx + 1) % dma_chans.size();
 
@@ -162,7 +170,7 @@ void ClkController::prepare_next_dma_buf() {
 			return;
 		}
 
-		const auto bits_left = current_region->first - glitch_idx;
+		const auto bits_left  = current_region->first - glitch_idx;
 		const auto words_left = bits_left / 32;
 
 		const auto word_fill_val = current_region->second ? 0 : 0xFFFFFFFF;
@@ -213,7 +221,9 @@ void ClkController::dma_handler() {
 	// TODO: Check source is definitely from the channels this uses
 	self_instance->prepare_next_dma_buf();
 	// Just clear all dma interrupts
-	for (const auto& chan : self_instance->dma_chans) { dma_hw->ints0 = 1 << chan.num; }
+	for (const auto& chan : self_instance->dma_chans) {
+		dma_hw->ints0 = 1 << chan.num;
+	}
 }
 
 } // namespace TargetInterfaces

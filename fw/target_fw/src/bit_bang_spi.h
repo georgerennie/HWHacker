@@ -12,5 +12,5 @@ public:
 private:
 	IOPin<Pins::SPI_SCLK, true, 0> sclk;
 	IOPin<Pins::SPI_CS_N, true, 1> cs_n;
-	IOPin<Pins::SPI_TX, true, 0> tx;
+	IOPin<Pins::SPI_TX, true, 0>   tx;
 };

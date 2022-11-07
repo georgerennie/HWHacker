@@ -25,7 +25,7 @@ public:
 		uint8_t high;
 		uint8_t extended;
 	};
-	void write_fuses(const AVRFuses fuses);
+	void     write_fuses(const AVRFuses fuses);
 	AVRFuses read_fuses();
 
 	void enable_pwr();
@@ -36,10 +36,10 @@ public:
 
 private:
 	ClkController clk;
-	Serial serial;
+	Serial        serial;
 
 	static constexpr auto pwr_en_pin = Pins::pwr_en;
-	static constexpr auto rst_n_pin = Pins::rst_n;
+	static constexpr auto rst_n_pin  = Pins::rst_n;
 };
 
 } // namespace TargetInterfaces

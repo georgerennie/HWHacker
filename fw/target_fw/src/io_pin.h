@@ -6,7 +6,7 @@ template <char PORT, uint8_t PIN>
 class PinRef {
 public:
 	static constexpr auto port = PORT | 0x20;
-	static constexpr auto pin = PIN;
+	static constexpr auto pin  = PIN;
 
 	static_assert(pin >= 0 && pin <= 7, "Pin must be in the range 0-7");
 
@@ -34,7 +34,7 @@ public:
 	constexpr bool read() const { return pin() & mask; }
 
 private:
-	static constexpr uint8_t mask = 1 << PIN_REF::pin;
+	static constexpr uint8_t mask     = 1 << PIN_REF::pin;
 	static constexpr uint8_t inv_mask = static_cast<uint8_t>(~mask);
 
 	template <typename _>
