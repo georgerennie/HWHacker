@@ -17,7 +17,7 @@ public:
 private:
 	static void interrupt_handler();
 
-	static spi_inst_t *const spi_intf;
+	static spi_inst_t* const spi_intf;
 
 	static constexpr auto sclk_pin = Pins::spi_sclk;
 	static constexpr auto cs_n_pin = Pins::spi_cs_n;

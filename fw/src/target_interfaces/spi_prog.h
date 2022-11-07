@@ -57,7 +57,7 @@ public:
 		static constexpr T WriteEFuse(const uint8_t val) { return {0xAC, 0xA4, 0x00, val}; };
 	};
 
-	uint8_t execute_cmd(const Cmd::T &cmd);
+	uint8_t execute_cmd(const Cmd::T& cmd);
 
 	void    program_flash(std::span<const uint8_t> data);
 	uint8_t read_flash_byte(const uint16_t addr);
@@ -66,7 +66,7 @@ public:
 	void wait_for_ready();
 
 private:
-	static spi_inst_t *const spi_intf;
+	static spi_inst_t* const spi_intf;
 	// static constexpr uint32_t baudrate = 2000000;
 	static constexpr uint32_t baudrate = 50000;
 
